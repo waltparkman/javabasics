@@ -11,6 +11,8 @@ import org.springframework.context.ApplicationContext;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.IntStream;
 
 @SpringBootApplication
 public class JavabasicsApplication {
@@ -94,6 +96,17 @@ public class JavabasicsApplication {
 		company.stream()
 			.filter(e -> e.getDepartment().equals("Accounting"))
 			.forEach(e -> System.out.println(e.getName()));
+
+		System.out.println("---FizzBuzz using Java 8 Stream---");
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the number for the FizzBuzz range:");
+        //reads an integer from the user
+		int num = sc.nextInt();
+        //the rangeClosed() method returns a sequential IntStream for the specified range of int elements
+        //for-each iterate over the Stream and prints the elements
+		IntStream.rangeClosed(1, num).mapToObj(i->i%3==0?(i%5==0? "FizzBuzz ":"Fizz "):(i%5==0? "Buzz ": i+" ")).forEach(System.out::print);
+        //close the Scanner
+		sc.close();
 
 	}
 
